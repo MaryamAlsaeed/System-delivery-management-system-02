@@ -141,7 +141,54 @@
         #endregion
         static void Main(string[] args)
         {
-            
+            #region Entering shipments
+            DeliveryCenter center = new DeliveryCenter();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Enter Shipment {i + 1} Data");
+
+                Console.Write("Enter tracking code: ");
+                string trackingCode = Console.ReadLine();
+
+                Console.Write("Enter description: ");
+                string description = Console.ReadLine();
+
+                Console.Write("Enter weight: ");
+                double weight = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter delivery fee: ");
+                double deliveryFee = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter city: ");
+                string city = Console.ReadLine();
+
+                Console.Write("Enter street: ");
+                string street = Console.ReadLine();
+
+                Console.Write("Enter building Number: ");
+                int buldingNum = int.Parse(Console.ReadLine());
+
+                // Create DeliveryAddress
+                DeliveryAddress address = new DeliveryAddress(city, street, buldingNum);
+
+                //Create shipment
+                Shipment shipment = new Shipment(trackingCode, description, weight, deliveryFee, address);
+
+                center.AddShipment(shipment);
+
+                Console.WriteLine("\n========== All Shipments ==========");
+
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.WriteLine($"\n--- Shipment {i + 1} ---");
+
+                    center[i].PrintShipment();
+                }
+
+            #endregion
+
+            }
         }
     }
 }
